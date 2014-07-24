@@ -18,7 +18,7 @@ var shell = require('shelljs'),
  * https://github.com/gruntjs/grunt/wiki/grunt.template
  */
 var commandTemplates = {
-	mysqldump: "mysqldump --hex-blob -h <%= host %> -P <%= port %> -u<%= user %> <%= pass %> <%= database %>",
+	mysqldump: "mysqldump --hex-blob -h <%= host %> -P <%= port %> -u<%= user %> <%= pass %> <%= database %> <%cmd_args%>",
 	ssh: "ssh <%= host %>"
 };
 
@@ -80,7 +80,8 @@ module.exports = function(grunt) {
                 pass: options.pass !== "" ? '--password="' + options.pass + '"' : '',
                 database: options.database,
                 host: options.host,
-	            port: options.port
+	        port: options.port, 
+	        cmd_args: options.cmd_args
             }
         });
 
